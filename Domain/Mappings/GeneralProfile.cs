@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
-using DTO.ArchiveDTO;
-
-using DTO.PermitDTO;
-using DTO.RoleDTO;
-using DTO.RoleDTO1;
 using DTO.UserDTO;
-using Entities.Model;
-//using Entities.Models;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,35 +11,20 @@ namespace Domain.Mappings
 {
     public class GeneralProfile : Profile
     {
-        /*
         #region User
         public GeneralProfile()
         {
-           CreateMap<User, UserDTO>().ReverseMap();
+           CreateMap<Employee, LoginDTO>().ReverseMap();
+           CreateMap<Employee, UserDTO>().ReverseMap();
+          // CreateMap<LoginCredentialsDTO, Employee>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
+           CreateMap<Education, EducationDTO>().ReverseMap();
+
 
         }
-        test commit
+        
 
         #endregion
 
-        */
-        #region
-        public GeneralProfile()
-        {
-           
-            
-            CreateMap<Role, RoleDTO1>().ReverseMap();
-            CreateMap<Role, RoleDTO>().ReverseMap();
-
-
-
-            CreateMap<Permit, PermitDTO>().ReverseMap();
-          
-            CreateMap<Archive, ArchiveDTO1>().ReverseMap();
-            CreateMap<Archive, ArchiveDTO>().ReverseMap();
-        }
-
-#endregion
 
     }
 }

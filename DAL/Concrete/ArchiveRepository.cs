@@ -17,7 +17,7 @@ namespace DAL.Concrete
 
 
 
-
+        //
 
         public Archive GetByEmployeeId(Guid id)
         {
