@@ -15,8 +15,10 @@ namespace DAL.DI
         public RepositoryRegistry()
         {
             IncludeRegistry<UnitOfWorkRegistry>();
+            For<IEmailRepository>().Use<EmailRepository>();
+            For<IEmployeeRepository>().Use<EmployeeRepository>();
+            For<IProjectRepository>().Use<ProjectRepository>();
 
-            For<IUserRepository>().Use<UserRepository>();
         }
 
 

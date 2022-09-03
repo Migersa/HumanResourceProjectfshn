@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DTO.UserDTO
 {
-    public class LoginCredentialsDTO
+    public class LoginCredentialDTO
     {
         
         public string Username { get; set; } = null!;

@@ -1,4 +1,4 @@
-﻿using Entities.Models;
+﻿using Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public interface IUserRepository: IRepository<User, Guid>
+    public interface IEmailRepository
     {
-        Employee GetById(Guid id);
+        void SendEmail(Employee employee, string subject, string body);
     }
-    */
 }

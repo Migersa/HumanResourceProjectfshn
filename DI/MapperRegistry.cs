@@ -21,6 +21,7 @@ namespace DI
             var mapper = config.CreateMapper();
             For<IConfigurationProvider>().Use(config);
             For<IMapper>().Use(mapper);
+            
         }
     }
 }

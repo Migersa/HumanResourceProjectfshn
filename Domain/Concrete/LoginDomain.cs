@@ -47,10 +47,10 @@ namespace Domain.Concrete
             
         
 
-        public UserDTO GetUserById(Guid id)
+        public EmployeDTO GetUserById(Guid id)
         {
             Employee user = loginRepository.GetById(id);
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<EmployeDTO>(user);
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash)

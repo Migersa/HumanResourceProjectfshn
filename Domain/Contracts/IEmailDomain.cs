@@ -1,4 +1,4 @@
-﻿using DTO.UserDTO;
+﻿using Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Contracts
 {
-    /*
-    public interface IUserDomain
+    internal interface IEmailDomain
     {
-        IList<UserDTO> GetAllUsers();
-        UserDTO GetUserById(Guid id);
+        void SendEmail(Employee employee, string subject, string body);
     }
-    */
 }
