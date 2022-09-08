@@ -20,7 +20,7 @@ namespace DAL.Concrete
 
             
             
-            var login = context.Where(a => a.Username == employee.Username).FirstOrDefault();
+            var login = context.Include(x => x.UserRoles).ThenInclude(x => x.Role).Where(a => a.Username == employee.Username).FirstOrDefault();
             if (login != null)
             {
              
