@@ -32,16 +32,16 @@ namespace Domain.Concrete
             var login = loginRepository.Generate(data);
 
 
-            //var verify = VerifyPasswordHash(dto.Password,login.PasswordHash);
+            var verify = VerifyPasswordHash(dto.Password, login.PasswordHash);
 
-            //byte[] bytes = Convert.FromBase64String(dto.Password);
-            //string credentials = Encoding.UTF8.GetString(bytes);
+            byte[] bytes = Convert.FromBase64String(dto.Password);
+            string credentials = Encoding.UTF8.GetString(bytes);
 
-            //if (bytes.Equals(dto.Password))
-            //{
-            //    var result = _mapper.Map<Employee, LoginDTO>(login);
-            //    return result;
-            //}
+            if (bytes.Equals(dto.Password))
+            {
+                var result = _mapper.Map<Employee, LoginDTO>(login);
+                return result;
+            }
             return null;
             }
             

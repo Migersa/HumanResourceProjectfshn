@@ -11,6 +11,8 @@ namespace DTO.LoginDTO
     {
 
         public Guid Id { get; set; }
+
+        public List<string> Role { get; set; }    
         public string Username { get; set; } = null!;
         public string Email { get; set; } = null!;
         public bool? EmailConfirm { get; set; }
