@@ -18,9 +18,22 @@ namespace DAL.DI
             For<IEmailRepository>().Use<EmailRepository>();
             For<IEmployeeRepository>().Use<EmployeeRepository>();
             For<IProjectRepository>().Use<ProjectRepository>();
+            For<IArchiveRepository>().Use<ArchiveRepository>();
+            For<IEducationRepository>().Use<EducationRepository>();
+            For<IJobRepository>().Use<JobRepository>();
+            For<ILoginRepository>().Use<LoginRepository>();
+            For<IPermitRepository>().Use<PermitRepository>();
+            For<IRolesRepository>().Use<RoleRepository>();
+
+
+
+
+
+
 
         }
 
 
     }
 }
+

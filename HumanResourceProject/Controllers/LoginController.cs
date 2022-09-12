@@ -18,6 +18,7 @@ namespace HumanResourceProject.Controllers
     public class LoginController : ControllerBase
     {
         public static LoginDTO auth = new LoginDTO();
+        public static RoleDTO role = new RoleDTO();
         private IConfiguration _config;
         private readonly ILoginDomain _loginDomain;
 
@@ -43,9 +44,16 @@ namespace HumanResourceProject.Controllers
                 auth = _loginDomain.GetAllUsers(login);
                 if (auth != null)
                 {
-                    var token = Generate(auth);
+                    var roleList = auth.UserRoles;
+                    foreach (var roleName in roleList)
+                    {
+                        role.Name = roleName.Role.Name;
+                    }
+                    var token = Generate(auth,role);
                     var refreshToken = GenerateRefreshToken();
                     SetRefreshToken(refreshToken);
+                  
+                  
                     return Ok(token);
                 }
                 else
@@ -96,7 +104,7 @@ namespace HumanResourceProject.Controllers
                 return Unauthorized("Token expired.");
             }
 
-            string token = Generate(auth);
+            string token = Generate(auth,role);
             var newRefreshToken = GenerateRefreshToken();
             SetRefreshToken(newRefreshToken);
 
@@ -128,18 +136,17 @@ namespace HumanResourceProject.Controllers
             auth.TokenCreated = newRefreshToken.Created;
             auth.TokenExpires = newRefreshToken.Expires;
         }
-        private string Generate(LoginDTO dto)
+        private string Generate(LoginDTO dto,RoleDTO role)
         {
             var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["jwt:secret"]));
             var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
 
-            //var claims = new[]
-            //{
-            //   // new Claim(ClaimTypes.NameIdentifier,dto.Username),
-            //   // new Claim(ClaimTypes.Email,dto.///Email),
-                
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier,dto.Username),
+                new Claim(ClaimTypes.Role,role.Name),
 
-            //};
+            };
 
             var token = new JwtSecurityToken(_config["jwt:validissuer"],
                 _config["jwt:validaudience"],

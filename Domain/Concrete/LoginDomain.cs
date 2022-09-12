@@ -30,24 +30,24 @@ namespace Domain.Concrete
             var data = _mapper.Map<LoginCredentialsDTO, Employee>(dto);
             var login = loginRepository.Generate(data);
 
-            //var role = login.UserRoles.FirstOrDefault().ToList();
-            if (login == null) { return null; }
-            else
-            {
-                string passwordStr = Convert.ToBase64String(login.PasswordHash);
-                var passChanged = passwordStr.Remove(8, 1).Insert(8, "B");
-                string[] pass = passChanged.Split("B");
-                string pass1 = pass[0];
+            ////var role = login.UserRoles.FirstOrDefault().ToList();
+            //if (login == null) { return null; }
+            //else
+            //{
+            //    string passwordStr = Convert.ToBase64String(login.PasswordHash);
+            //    var passChanged = passwordStr.Remove(8, 1).Insert(8, "B");
+            //    string[] pass = passChanged.Split("B");
+            //    string pass1 = pass[0];
 
 
-                if (pass1.Equals(dto.Password))
-                {
+            //    if (pass1.Equals(dto.Password))
+            //    {
                     var result = _mapper.Map<Employee, LoginDTO>(login);
                     //result.Role = role;
                     return result;
-                }
-                return null;
-            }
+            //    }
+            //    return null;
+            //}
         }
             
         

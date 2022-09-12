@@ -17,9 +17,12 @@ namespace Domain.Mappings
     {
         public GeneralProfile()
         {
-           CreateMap<Employee, LogInDTO>().ReverseMap();
-           CreateMap<Employee, EmployeDTO>().ReverseMap();
-          // CreateMap<LoginCredentialsDTO, Employee>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
+           CreateMap<Employee, LoginDTO>().ReverseMap();
+            CreateMap<UserRole, UserRoleDTO>().ReverseMap();
+            CreateMap<Role, RoleDTO>().ReverseMap();
+
+            CreateMap<Employee, EmployeDTO>().ReverseMap();
+           CreateMap<LoginCredentialsDTO, Employee>().ForSourceMember(x => x.Password, opt => opt.DoNotValidate());
            CreateMap<Education, EducationDTO>().ReverseMap();
             CreateMap<Employee, DTO.EmployeeDTO.EmployeeDTO>().ReverseMap();
             CreateMap<Employee, EmployeeDTO1>().ReverseMap();

@@ -19,6 +19,8 @@ namespace Domain.DI
 
 
             For<IEmailDomain>().Use<EmailDomain>();
+            For<IRoleDomain>().Use<RoleDomain>();
+            For<IArchiveDomain>().Use<ArchiveDomain>();
 
             For<IPermitDomain>().Use<PermitDomain>();
             For<IEmployeeDomain>().Use<EmployeeDomain>();
