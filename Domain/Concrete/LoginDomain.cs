@@ -23,7 +23,7 @@ namespace Domain.Concrete
         }
         private ILoginRepository loginRepository => _unitOfWork.GetRepository<ILoginRepository>();
 
-        public  LoginDTO GetAllUsers(LoginCredentialsDTO dto)
+        public  LoginDTO AuthUsers(LoginCredentialsDTO dto)
         {
 
 
@@ -34,8 +34,8 @@ namespace Domain.Concrete
             else
             {
                 string passwordStr = Convert.ToBase64String(login.PasswordHash);
-                var passChanged = passwordStr.Remove(8, 1).Insert(8, "B");
-                string[] pass = passChanged.Split("B");
+                var passChanged = passwordStr.Remove(8, 1).Insert(8, ":");
+                string[] pass = passChanged.Split(":");
                 string pass1 = pass[0];
 
 
@@ -49,17 +49,7 @@ namespace Domain.Concrete
             }
         }
             
-        
 
-        public EmployeDTO GetUserById(Guid id)
-        {
-            Employee user = loginRepository.GetById(id);
-            return _mapper.Map<EmployeDTO>(user);
-        }
-
-     
-
-       
 
 
     }

@@ -10,7 +10,7 @@ namespace Domain.Contracts
 {
     public interface ILoginDomain
     {
-       LoginDTO GetAllUsers(LoginCredentialsDTO dto);
-        EmployeDTO GetUserById(Guid id);
+       LoginDTO AuthUsers(LoginCredentialsDTO dto);
+        
     }
 }

@@ -41,7 +41,7 @@ namespace HumanResourceProject.Controllers
                 }
                 
                
-                auth = _loginDomain.GetAllUsers(login);
+                auth = _loginDomain.AuthUsers(login);
                 if (auth != null)
                 {
                     var roleList = auth.UserRoles;
@@ -66,28 +66,7 @@ namespace HumanResourceProject.Controllers
                 return StatusCode(500, ex);
             }
         }
-        [Authorize]
-        [HttpGet]
-        [Route("{userId}")]
-        public IActionResult GetUserLoginById([FromRoute] Guid userId)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return BadRequest();
-                var user = _loginDomain.GetUserById(userId);
-
-                if (user != null)
-                    return Ok(user);
-
-                return NotFound();
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+    
         
         [HttpPost("refresh-token")]
         public async Task<ActionResult<string>> RefreshToken()
@@ -150,7 +129,7 @@ namespace HumanResourceProject.Controllers
 
             var token = new JwtSecurityToken(_config["jwt:validissuer"],
                 _config["jwt:validaudience"],
-                //claims,
+                claims,
                 expires: DateTime.Now.AddMinutes(15),
                 signingCredentials: credentials);
 

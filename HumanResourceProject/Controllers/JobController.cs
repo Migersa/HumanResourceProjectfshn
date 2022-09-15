@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts;
 using DTO.JobDTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,32 +21,60 @@ namespace HumanResourceProject.Controllers
         }
 
         [HttpGet]
-        [Route("{userId}")]
-        public IActionResult GetEducationById([FromRoute] Guid userId)
+        [Authorize(Roles = "Board Member")]
+        public IActionResult GetAllUsers()
         {
             try
             {
                 if (!ModelState.IsValid)
+                {
                     return BadRequest();
-                var user = _jobdomain.GetJobById(userId);
+                }
 
+                var jobs = _jobdomain.GetAllJobs();
 
-                return Ok(user);
-
-
+                if (jobs != null)
+                {
+                    return Ok(jobs);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
-
             catch (Exception ex)
             {
-                throw ex;
+                return StatusCode(500, ex);
             }
-
-
         }
+
+        //[HttpGet]
+        //[Route("{userId}")]
+        //public IActionResult GetEducationById([FromRoute] Guid userId)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //            return BadRequest();
+        //        var user = _jobdomain.GetJobById(userId);
+
+
+        //        return Ok(user);
+
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+
+        //}
 
 
         [HttpPost]
-        [Route("addJob")]
+        [Authorize]
         public IActionResult AddJob([FromBody] JobDTO job)
         {
             try
@@ -70,8 +99,8 @@ namespace HumanResourceProject.Controllers
 
 
         [HttpPut]
-        [Route("userId")]
-        public IActionResult UpdateEducation([FromBody] JobDTO job)
+        
+        public IActionResult UpdateJob([FromBody] JobDTO job)
         {
             try
             {
@@ -93,7 +122,7 @@ namespace HumanResourceProject.Controllers
 
         [HttpDelete]
         [Route("{userId}")]
-        public IActionResult DeleteEducation([FromRoute] Guid Id)
+        public IActionResult DeleteJob([FromRoute] Guid Id)
         {
             try
             {

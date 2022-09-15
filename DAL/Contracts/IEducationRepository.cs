@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public interface IEducationRepository
+    public interface IEducationRepository:IRepository <Education, Guid>
     {
         Education GetById(Guid id);
         Education Add(Education entity);

@@ -33,15 +33,7 @@ namespace DAL.Concrete
             return null;
             }
 
-        public Employee GetById(Guid id)
-        {
-            
-            var user = context.Where(a => a.Id == id).FirstOrDefault();
-
-
-            return user;
-            
-        }
+       
 
         //private bool VerifyPasswordHash(string password, byte[] passwordHash)
         //{

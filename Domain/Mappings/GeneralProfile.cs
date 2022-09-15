@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DTO.EducationDTO;
 using DTO.EmployeeDTO;
+using DTO.JobDTO;
 using DTO.LoginDTO;
 using DTO.ProjectDTO;
 using DTO.UserDTO;
@@ -28,13 +29,15 @@ namespace Domain.Mappings
             CreateMap<Employee, EmployeeDTO1>().ReverseMap();
             CreateMap<Project, ProjectDTO>().ReverseMap();
             CreateMap<Project, ProjectDTO1>().ReverseMap();
+            CreateMap<Job,JobDTO>().ReverseMap();
+
 
 
         }
-        
 
-        
-        
+
+
+
 
 
     }

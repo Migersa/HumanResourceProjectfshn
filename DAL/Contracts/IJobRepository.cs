@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
-    public interface IJobRepository
+    public interface IJobRepository: IRepository<Job,Guid>
     {
         Job GetById(Guid id);
         Job Add(Job job);

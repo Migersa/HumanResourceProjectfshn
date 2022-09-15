@@ -21,6 +21,13 @@ namespace Domain.Concrete
 
         }
         private IJobRepository jobRepository => _unitOfWork.GetRepository<IJobRepository>();
+
+        public IList<JobDTO> GetAllJobs()
+        {
+            IEnumerable<Job> jobs = jobRepository.GetAll();
+            var test = _mapper.Map<IList<JobDTO>>(jobs);
+            return test;
+        }
         public JobDTO Add(JobDTO job)
         {
             var data = _mapper.Map<JobDTO, Job>(job);
