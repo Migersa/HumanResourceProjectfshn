@@ -12,17 +12,12 @@ namespace HumanResourceProject.Controllers
 
         public Role r = new Role();
 
-
         public RoleController(IRoleDomain role1Domain)
         {
            roleDomain = role1Domain;
         }
 
-
-
         [HttpGet("AllRoles")]
-
-
         public IActionResult GetAll()
         {
 
@@ -31,9 +26,6 @@ namespace HumanResourceProject.Controllers
                 return BadRequest();
             }
 
-
-
-
             else
             {
                var d  = roleDomain.GetAllRoles();
@@ -41,33 +33,22 @@ namespace HumanResourceProject.Controllers
             }
         }
 
-
-
-
-
-
-
-
+        
         [HttpPost("AddRoles")]
-
-
         public IActionResult create(RoleDTO1 role)
         {
 
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest();
-                }
-
-
-
-
-                else
-                {
-               r=roleDomain.CreateRole(role);
-                    return Ok(r);
-                }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
             }
+
+            else
+            {
+                r=roleDomain.CreateRole(role);
+                return Ok(r);
+            }
+        }
 
         [HttpPost("GetRolesByname")]
 
@@ -79,9 +60,6 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
 
             else
             {
@@ -102,9 +80,6 @@ namespace HumanResourceProject.Controllers
                 return BadRequest();
             }
 
-
-
-
             else
             {
                 r = roleDomain.GetById(id);
@@ -122,10 +97,7 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
+            
             else
             {
                roleDomain.Remove(id);
@@ -137,14 +109,10 @@ namespace HumanResourceProject.Controllers
 
         public IActionResult UpdatePermit(RoleDTO role)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-
-
-
 
             else
             {
@@ -152,11 +120,6 @@ namespace HumanResourceProject.Controllers
                 return Ok("updated");
             }
         }
-
-
-
-
-
     }
 }
 

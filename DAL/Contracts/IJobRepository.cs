@@ -12,7 +12,6 @@ namespace DAL.Contracts
         Job GetById(Guid id);
         Job Add(Job job);
         void Update(Job job);
-
         void Remove(Guid id);
     }
 }

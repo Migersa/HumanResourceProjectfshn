@@ -21,8 +21,6 @@ namespace HumanResourceProject.Controllers
             _educationdomain = educationdomain;
         }
 
-
-
         [HttpGet]
         [Route("{userId}")]
         public IActionResult GetEducationById([FromRoute] Guid userId)
@@ -32,19 +30,12 @@ namespace HumanResourceProject.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest();
                 var user = _educationdomain.GetEducationById(userId);
-
-
                 return Ok(user);
-
-
             }
-
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
 
 
@@ -58,18 +49,13 @@ namespace HumanResourceProject.Controllers
                     return BadRequest();
                 var user = _educationdomain.Add(education);
 
-
                 return Ok(user);
-
-
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
 
 
@@ -79,8 +65,6 @@ namespace HumanResourceProject.Controllers
         {
             try
             {
-
-
                 _educationdomain.Update(education);
                 return Ok("updated");
             }
@@ -92,36 +76,23 @@ namespace HumanResourceProject.Controllers
         }
     
 
-
-
-
-    [HttpDelete]
-    [Route("{userId}")]
-    public IActionResult DeleteEducation([FromRoute] Guid Id)
-    {
-        try
+        [HttpDelete]
+        [Route("{userId}")]
+        public IActionResult DeleteEducation([FromRoute] Guid Id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-            _educationdomain.Remove(Id);
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest();
+                _educationdomain.Remove(Id);
 
+                return Ok("update completed");
+            }
 
-            return Ok("update completed");
-
-
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
-        catch (Exception ex)
-        {
-            throw ex;
-        }
-
-
     }
-
-
-
-    }
-
-
 }

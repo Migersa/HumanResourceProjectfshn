@@ -17,22 +17,13 @@ namespace HumanResourceProject.Controllers
             archiveDomain = archive1Domain;
         }
 
-
-
+        
         [HttpGet("AllArchives")]
-
-
         public IActionResult GetAll()
         {
 
             if (!ModelState.IsValid)
-            {
                 return BadRequest();
-            }
-
-
-
-
             else
             {
                 var d = archiveDomain.GetAllArchives();
@@ -41,15 +32,7 @@ namespace HumanResourceProject.Controllers
         }
 
 
-
-
-
-
-
-
         [HttpPost("AddArchive")]
-
-
         public IActionResult create(ArchiveDTO archive)
         {
 
@@ -57,9 +40,6 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
 
             else
             {
@@ -70,8 +50,6 @@ namespace HumanResourceProject.Controllers
 
         
         [HttpPost("GetArchiveById")]
-
-
         public IActionResult GetById(Guid id)
         {
 
@@ -79,10 +57,6 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 r = archiveDomain.GetById(id);
@@ -90,9 +64,8 @@ namespace HumanResourceProject.Controllers
             }
         }
 
+
         [HttpPost("RemoveArchiveById")]
-
-
         public IActionResult RemoveById(Guid id)
         {
 
@@ -100,38 +73,26 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 archiveDomain.Remove(id);
                 return Ok("Deleted");
             }
         }
+
+
         [HttpPut("UpdateArchiveById")]
-
-
         public IActionResult UpdateArchive(ArchiveDTO1 archive)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 archiveDomain.Update(archive);
                 return Ok("updated");
             }
         }
-
-
-
     }
 }

@@ -15,23 +15,17 @@ namespace Domain.Concrete
 {
     internal class PermitDomain : DomainBase, IPermitDomain
     {
-        public PermitDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
-
+        public PermitDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor) { }
+        
         private IPermitRepository permitRepository => _unitOfWork.GetRepository<IPermitRepository>();
-
 
         public IList<PermitDTO1> GetAllPermit()
         {
             IEnumerable<Permit> permits = permitRepository.GetAll();
-            var test = _mapper.Map<IList<PermitDTO1>>(permits);
-
-            return test;
+            return _mapper.Map<IList<PermitDTO1>>(permits);
         }
+        
         public Permit CreatePermit(PermitDTO permit)
-
-
         {
             /*
 
@@ -53,12 +47,9 @@ namespace Domain.Concrete
         public void Remove(Guid id)
         {
             permitRepository.Remove(id);
-
-
         }
         public void Update(PermitDTO1 permit)
         {
-
             var p = _mapper.Map<PermitDTO1, Permit>(permit);
             permitRepository.Update(p);
         }

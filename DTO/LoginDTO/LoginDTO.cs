@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DTO.LoginDTO
 {
@@ -15,24 +9,20 @@ namespace DTO.LoginDTO
         public DateTime TokenCreated { get; set; }
         public DateTime TokenExpires { get; set; }
         public List<UserRoleDTO> UserRoles { get; set; }
-
-
+    
     }
+
     public class UserRoleDTO
     {
-       
         public Guid RoleId { get; set; }
         public Guid UserId { get; set; }
         public RoleDTO Role { get; set; }
-
     }
+
     public class RoleDTO
     {
-
         public Guid RoleId { get; set; }
         public string Name { get; set; } = null!;
     }
-
-
 
 }

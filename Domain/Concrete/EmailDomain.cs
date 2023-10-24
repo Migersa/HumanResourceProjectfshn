@@ -14,15 +14,11 @@ namespace Domain.Concrete
 {
     internal class EmailDomain : DomainBase, IEmailDomain
     {
-        public EmailDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
-
+        public EmailDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor) { }
         private IEmailRepository emailRepository => _unitOfWork.GetRepository<IEmailRepository>();
         public void SendEmail(Employee employee, string subject, string body)
         {
             emailRepository.SendEmail(employee, subject, body);
-
         }
     }
 }

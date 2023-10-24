@@ -1,9 +1,4 @@
 ﻿using Entities.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL.Contracts
 {
@@ -13,9 +8,8 @@ namespace DAL.Contracts
         Role Add(Role roli);
         Role GetById(Guid id);
         void Update(Role roli);
-       void Remove(Guid id);
+        void Remove(Guid id);
         Role GetByRoleName(string name);
         IEnumerable<Role> GetAll();
-
     }
 }

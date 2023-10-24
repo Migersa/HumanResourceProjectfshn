@@ -10,13 +10,10 @@ namespace Domain.Contracts
 {
     public interface IArchiveDomain
     {
-
         IList<ArchiveDTO1> GetAllArchives();
         Archive CreateArchive(ArchiveDTO archive);
         Archive GetById(Guid id);
         void Remove(Guid id);
         void Update(ArchiveDTO1 archive);
-
-
     }
 }

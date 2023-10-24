@@ -11,14 +11,8 @@ namespace DAL.Concrete
 {
     internal class ArchiveRepository : BaseRepository<Archive, Guid>, IArchiveRepository
     {
-        public ArchiveRepository(HumanResourcesContext dbContext) : base(dbContext)
-        {
-        }
-
-
-
-        //
-
+        public ArchiveRepository(HumanResourcesContext dbContext) : base(dbContext) { }
+        
         public Archive GetByEmployeeId(Guid id)
         {
             var archive = context.Where(a => a.EmployeeId == id).FirstOrDefault();
@@ -37,11 +31,7 @@ namespace DAL.Concrete
             context.Add(archive);
             PersistChangesToTrackedEntities();
             return context.Add(archive).Entity;
-
-
         }
-
-
 
         public void Update(Archive archive)
         {
@@ -52,8 +42,6 @@ namespace DAL.Concrete
             //context.Update(project);
             SetModified(archive);
             PersistChangesToTrackedEntities();
-
-
         }
         public void Remove(Guid id)
         {
@@ -63,8 +51,6 @@ namespace DAL.Concrete
                 Remove(ArchiveToRemove);
             }
             PersistChangesToTrackedEntities();
-
-
         }
     }
 }

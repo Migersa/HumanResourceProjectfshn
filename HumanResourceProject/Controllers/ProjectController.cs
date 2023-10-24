@@ -1,6 +1,5 @@
 ﻿using Domain.Contracts;
 using DTO.ProjectDTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
@@ -16,6 +15,7 @@ namespace HumanResourceProject.Controllers
             _projectDomain = projectDomain;
         }
 
+
         [HttpPost]
         [Route("GetAllProjects")]
         public IActionResult GetAllProjects()
@@ -28,21 +28,15 @@ namespace HumanResourceProject.Controllers
                 }
 
                 var users = _projectDomain.GetAllProjects();
-
-                if (users != null)
-                {
-                    return Ok(users);
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return (users != null) ? Ok(users) : NotFound();
             }
+
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
         }
+
 
         [HttpGet]
         [Route("Get")]
@@ -56,18 +50,7 @@ namespace HumanResourceProject.Controllers
                 }
 
                 var project = _projectDomain.GetProjectByName(name);
-
-                if (project != null)
-                {
-                    return Ok(project);
-                }
-                else
-                {
-                    return NotFound();
-                }
-
-
-
+                return (project != null) ? Ok(project) : NotFound();
             }
 
             catch (Exception ex)
@@ -76,23 +59,21 @@ namespace HumanResourceProject.Controllers
             }
         }
 
+        
         [HttpPost]
         [Route("Create")]
         public IActionResult Create(ProjectDTO project)
         {
-
             if (!ModelState.IsValid || project == null)
             {
                 return BadRequest();
             }
             else
             {
-
                 _projectDomain.CreateProject(project);
                 return Ok();
             }
         }
-
 
 
         [HttpDelete]
@@ -125,12 +106,7 @@ namespace HumanResourceProject.Controllers
             {
                 _projectDomain.Update(project);
                 return Ok();
-
             }
-
-
-
-
         }
     }
 }

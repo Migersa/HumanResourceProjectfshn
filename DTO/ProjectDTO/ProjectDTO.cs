@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace DTO.ProjectDTO
 {
@@ -13,8 +9,6 @@ namespace DTO.ProjectDTO
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
         public Guid UserID { get; set; }
-
-
     }
 }
 

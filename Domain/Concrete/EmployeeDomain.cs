@@ -5,20 +5,14 @@ using Domain.Contracts;
 using DTO.EmployeeDTO;
 using Entities.Model;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Domain.Concrete
 {
     internal class EmployeeDomain : DomainBase, IEmployeeDomain
     {
-        public EmployeeDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor)
-        {
-        }
-
+        public EmployeeDomain(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(unitOfWork, mapper, httpContextAccessor) { }
+        
         private IEmployeeRepository employeeRepository => _unitOfWork.GetRepository<IEmployeeRepository>();
 
         private IEmailRepository emailRepository => _unitOfWork.GetRepository<IEmailRepository>();
@@ -42,23 +36,17 @@ namespace Domain.Concrete
             Employee user = _mapper.Map<Employee>(employee);
             user.Id = Guid.NewGuid();
 
-
             // List<UserRole> userRole = new List<UserRole>();
 
             foreach (var item in employee.RoleId)
             {
-
-                UserRole x = new UserRole();
+            var x = new UserRole();
                 x.PunonjesId = user.Id;
                 x.RoleId = item;
                 user.UserRoles.Add(x);
-
             }
 
-
             //user.UserRoles = userRole;
-
-
 
             string password = employeeRepository.generatePassword();
             string newEmail = employee.Username.ToLower().Replace(" ", String.Empty) + "@3isolutions.com";

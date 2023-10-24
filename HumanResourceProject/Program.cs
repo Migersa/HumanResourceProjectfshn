@@ -47,7 +47,7 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(typeof(GeneralProfile));
+
 
 
 builder.Services.AddCors(options =>
@@ -64,7 +64,7 @@ builder.Host.UseLamar((context, registry) =>
     // add the controllers
 });
 
-
+builder.Services.AddAutoMapper(typeof(GeneralProfile));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,6 +1,5 @@
 ﻿using Domain.Contracts;
 using DTO.EmployeeDTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
@@ -16,19 +15,7 @@ namespace HumanResourceProject.Controllers
             _userDomain = userDomain;
         }
 
-        /*[HttpPost]
-        [Route("Create")]
-        public void Create(Employee employee)
-        {
-            _userDomain.Create(employee);
-        }*/
-
-
-
-
-
-
-
+      
         [HttpGet]
         [Route("getAllUsers")]
         public IActionResult GetAllUsers()
@@ -36,21 +23,16 @@ namespace HumanResourceProject.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                {
                     return BadRequest();
-                }
-
+                
                 var users = _userDomain.GetAllUsers();
 
                 if (users != null)
-                {
                     return Ok(users);
-                }
                 else
-                {
                     return NotFound();
-                }
             }
+            
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
@@ -86,17 +68,10 @@ namespace HumanResourceProject.Controllers
         [Route("Register")]
         public async Task<ActionResult<EmployeeDTO>> Register(EmployeeDTO request)
         {
-
-
             _userDomain.Create(request);
-
-
             return Ok(request);
-
-
-
-
         }
+
 
         [HttpPut]
         [Route("Update")]
@@ -104,20 +79,14 @@ namespace HumanResourceProject.Controllers
         public IActionResult Update([FromBody] EmployeeDTO1 employee)
         {
             var employeeToUpdate = _userDomain.GetUserById(employee.Id);
+
             if (employee == null || employeeToUpdate == null)
-            {
                 return BadRequest("Project does not exist.");
-            }
             else
             {
                 _userDomain.Update(employee);
                 return Ok();
-
             }
-
-
-
-
         }
     }
 }

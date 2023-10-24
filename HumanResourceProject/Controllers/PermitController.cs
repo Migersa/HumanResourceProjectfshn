@@ -19,18 +19,12 @@ namespace HumanResourceProject.Controllers
 
 
         [HttpGet("AllPermits")]
-
-
         public IActionResult GetAll()
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-
-
-
 
             else
             {
@@ -40,21 +34,13 @@ namespace HumanResourceProject.Controllers
         }
 
 
-
         [HttpPost("AddPermits")]
-
-
-        public IActionResult create(PermitDTO permit)
+        public IActionResult Create(PermitDTO permit)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 p = permitDomain.CreatePermit(permit);
@@ -63,11 +49,7 @@ namespace HumanResourceProject.Controllers
         }
 
 
-
-
         [HttpPost("GetPermitById")]
-
-
         public IActionResult GetById(Guid id)
         {
 
@@ -75,10 +57,6 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 p = permitDomain.GetById(id);
@@ -86,9 +64,8 @@ namespace HumanResourceProject.Controllers
             }
         }
 
+
         [HttpPost("RemovePermitById")]
-
-
         public IActionResult RemoveById(Guid id)
         {
 
@@ -96,10 +73,6 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 permitDomain.Remove(id);
@@ -108,12 +81,7 @@ namespace HumanResourceProject.Controllers
         }
 
 
-
-
-
         [HttpPut("UpdatePermitById")]
-
-
         public IActionResult UpdatePermit(PermitDTO1 permit)
         {
 
@@ -121,16 +89,11 @@ namespace HumanResourceProject.Controllers
             {
                 return BadRequest();
             }
-
-
-
-
             else
             {
                 permitDomain.Update(permit);
                 return Ok("updated");
             }
         }
-
     }
 }

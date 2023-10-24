@@ -9,7 +9,6 @@ namespace DAL.Contracts
 {
     public interface ILoginRepository : IRepository<Employee, Guid>
     {
-       
-        Employee Generate(Employee emp);
+       Employee? Generate(Employee emp);
     }
 }

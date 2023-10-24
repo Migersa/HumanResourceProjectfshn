@@ -12,7 +12,6 @@ namespace DAL.Contracts
         Education GetById(Guid id);
         Education Add(Education entity);
         void Update(Education education);
-
         void Remove(Guid id);
     }
 }

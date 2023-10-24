@@ -37,7 +37,4 @@ namespace DAL.Concrete
             smtp.Disconnect(true);
         }
     }
-    
-
-   
 }

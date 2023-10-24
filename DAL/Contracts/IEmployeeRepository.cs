@@ -11,10 +11,8 @@ namespace DAL.Contracts
     {
         Employee GetById(Guid id);
         void Create(Employee employee);
-
         string generatePassword();
         void Update(Employee employee);
-
         byte[] createPasswordHash(string password);
     }
 

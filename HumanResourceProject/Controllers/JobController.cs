@@ -1,7 +1,6 @@
 ﻿using Domain.Contracts;
 using DTO.JobDTO;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HumanResourceProject.Controllers
@@ -10,7 +9,6 @@ namespace HumanResourceProject.Controllers
     [ApiController]
     public class JobController : ControllerBase
     {
-
         private IConfiguration _config;
         private readonly IJobDomain _jobdomain;
 
@@ -32,45 +30,13 @@ namespace HumanResourceProject.Controllers
                 }
 
                 var jobs = _jobdomain.GetAllJobs();
-
-                if (jobs != null)
-                {
-                    return Ok(jobs);
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return (jobs != null) ? Ok(jobs) : NotFound();
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }
         }
-
-        //[HttpGet]
-        //[Route("{userId}")]
-        //public IActionResult GetEducationById([FromRoute] Guid userId)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //            return BadRequest();
-        //        var user = _jobdomain.GetJobById(userId);
-
-
-        //        return Ok(user);
-
-
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-
-        //}
 
 
         [HttpPost]
@@ -82,44 +48,32 @@ namespace HumanResourceProject.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest();
                 var user = _jobdomain.Add(job);
-
-
                 return Ok(user);
-
-
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
 
 
         [HttpPut]
-        
         public IActionResult UpdateJob([FromBody] JobDTO job)
         {
             try
             {
-
-
                 _jobdomain.Update(job);
                 return Ok("updated");
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error updating data");
+                "Error updating data");
             }
         }
 
-
-
-
-
+        
         [HttpDelete]
         [Route("{userId}")]
         public IActionResult DeleteJob([FromRoute] Guid Id)
@@ -128,21 +82,15 @@ namespace HumanResourceProject.Controllers
             {
                 if (!ModelState.IsValid)
                     return BadRequest();
+
                 _jobdomain.Remove(Id);
-
-
                 return Ok("update completed");
-
-
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-
-
         }
-
     }
 }
